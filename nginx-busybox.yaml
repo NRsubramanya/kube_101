@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-busybox-pod
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+    ports:
+    - containerPort: 80
+  - name: busybox-container
+    image: busybox
+    command: [ "sh", "-c", "i=1; while [ $i -le 3600 ]; do echo Counter: $i; i=$((i+1)); sleep 1; done" ]
+    ports:
+    - containerPort: 8080
